@@ -33,7 +33,9 @@ public class PrometheusExporterConfig {
             metricConfig("tick_duration_max", true, TickDurationMaxCollector::new),
 
             metricConfig("player_online", false, PlayerOnline::new),
-            metricConfig("player_statistic", false, PlayerStatistics::new));
+            metricConfig("player_statistic", false, PlayerStatistics::new),
+
+            metricConfig("packets", true, Packets::new));
 
     private final PrometheusExporter prometheusExporter;
 
