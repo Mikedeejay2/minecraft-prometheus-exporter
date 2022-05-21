@@ -35,7 +35,8 @@ public class PrometheusExporterConfig {
             metricConfig("player_online", false, PlayerOnline::new),
             metricConfig("player_statistic", false, PlayerStatistics::new),
 
-            metricConfig("packets", true, Packets::new));
+            metricConfig("packets", true, Packets::new),
+            metricConfig("server", true, ServerInfo::new));
 
     private final PrometheusExporter prometheusExporter;
 
