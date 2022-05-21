@@ -5,5 +5,5 @@ main: de.sldk.mc.PrometheusExporter
 website: sldk.de
 api-version: 1.16
 
-softdepend:
+depend:
   - ProtocolLib
