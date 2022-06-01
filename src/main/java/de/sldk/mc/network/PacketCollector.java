@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
 
 public class PacketCollector {
@@ -23,18 +24,22 @@ public class PacketCollector {
         PacketRegistry.getClientPacketTypes().forEach(type -> clientPackets.put(type, 0));
         PacketRegistry.getServerPacketTypes().forEach(type -> serverPackets.put(type, 0));
 
+        Set<PacketType> clientPacketTypes = PacketRegistry.getClientPacketTypes();
+        clientPacketTypes.remove(PacketType.Status.Client.PING);
         protocol.addPacketListener(new PacketAdapter(
             plugin, ListenerPriority.HIGHEST,
-            PacketRegistry.getClientPacketTypes()) {
+            clientPacketTypes) {
             @Override
             public void onPacketReceiving(PacketEvent event) {
                 clientPackets.computeIfPresent(event.getPacket().getType(), INCREMENT);
             }
         });
 
+        Set<PacketType> serverPacketTypes = PacketRegistry.getServerPacketTypes();
+        serverPacketTypes.remove(PacketType.Status.Server.PONG);
         protocol.addPacketListener(new PacketAdapter(
             plugin, ListenerPriority.HIGHEST,
-            PacketRegistry.getServerPacketTypes()) {
+            serverPacketTypes) {
             @Override
             public void onPacketSending(PacketEvent event) {
                 serverPackets.computeIfPresent(event.getPacket().getType(), INCREMENT);
