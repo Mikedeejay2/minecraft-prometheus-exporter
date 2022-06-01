@@ -8,6 +8,7 @@ import com.comphenix.protocol.injector.packet.PacketRegistry;
 import org.bukkit.plugin.Plugin;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -24,7 +25,7 @@ public class PacketCollector {
         PacketRegistry.getClientPacketTypes().forEach(type -> clientPackets.put(type, 0));
         PacketRegistry.getServerPacketTypes().forEach(type -> serverPackets.put(type, 0));
 
-        Set<PacketType> clientPacketTypes = PacketRegistry.getClientPacketTypes();
+        Set<PacketType> clientPacketTypes = new HashSet<>(PacketRegistry.getClientPacketTypes());
         clientPacketTypes.remove(PacketType.Status.Client.PING);
         protocol.addPacketListener(new PacketAdapter(
             plugin, ListenerPriority.HIGHEST,
@@ -35,7 +36,7 @@ public class PacketCollector {
             }
         });
 
-        Set<PacketType> serverPacketTypes = PacketRegistry.getServerPacketTypes();
+        Set<PacketType> serverPacketTypes = new HashSet<>(PacketRegistry.getServerPacketTypes());
         serverPacketTypes.remove(PacketType.Status.Server.PONG);
         protocol.addPacketListener(new PacketAdapter(
             plugin, ListenerPriority.HIGHEST,
