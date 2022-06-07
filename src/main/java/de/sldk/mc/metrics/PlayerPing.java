@@ -16,6 +16,12 @@ public class PlayerPing extends OnlinePlayerMetric {
     }
 
     @Override
+    public void collect() {
+        PLAYER_PING.clear();
+        super.collect();
+    }
+
+    @Override
     protected void collect(Player player) {
         PLAYER_PING.labels(getName(player), getUid(player)).set(player.getPing());
     }

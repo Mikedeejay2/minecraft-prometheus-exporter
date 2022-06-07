@@ -16,6 +16,12 @@ public class PlayerViewDistance extends OnlinePlayerMetric {
     }
 
     @Override
+    public void collect() {
+        PLAYER_VIEW_DISTANCE.clear();
+        super.collect();
+    }
+
+    @Override
     protected void collect(Player player) {
         PLAYER_VIEW_DISTANCE.labels(getName(player), getUid(player)).set(player.getClientViewDistance());
     }
