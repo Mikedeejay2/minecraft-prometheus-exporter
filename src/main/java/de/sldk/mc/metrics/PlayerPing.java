@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 
 public class PlayerPing extends PlayerMetric {
     private static final Gauge PLAYER_PING = Gauge.build()
-        .name(prefix("players_ping"))
+        .name(prefix("player_ping"))
         .help("Online player ping")
         .labelNames("name", "uid")
         .create();

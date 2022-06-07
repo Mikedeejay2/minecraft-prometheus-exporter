@@ -6,7 +6,7 @@ import org.bukkit.plugin.Plugin;
 
 public class PlayerViewDistance extends PlayerMetric {
     private static final Gauge PLAYER_VIEW_DISTANCE = Gauge.build()
-        .name(prefix("players_view_distance"))
+        .name(prefix("player_view_distance"))
         .help("Online player view distance")
         .labelNames("name", "uid")
         .create();

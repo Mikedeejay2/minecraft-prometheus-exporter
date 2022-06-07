@@ -37,8 +37,8 @@ public class PrometheusExporterConfig {
 
             metricConfig("packets", true, Packets::new),
             metricConfig("server", true, ServerInfo::new),
-            metricConfig("players_ping", true, PlayerPing::new),
-            metricConfig("players_view_distance", true, PlayerViewDistance::new));
+            metricConfig("player_ping", true, PlayerPing::new),
+            metricConfig("player_view_distance", true, PlayerViewDistance::new));
 
     private final PrometheusExporter prometheusExporter;
 
