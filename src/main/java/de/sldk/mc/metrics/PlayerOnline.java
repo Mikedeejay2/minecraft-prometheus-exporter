@@ -4,7 +4,7 @@ import io.prometheus.client.Gauge;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.Plugin;
 
-public class PlayerOnline extends PlayerMetric {
+public class PlayerOnline extends OfflinePlayerMetric {
 
     private static final Gauge PLAYERS_WITH_NAMES = Gauge.build()
             .name(prefix("player_online"))

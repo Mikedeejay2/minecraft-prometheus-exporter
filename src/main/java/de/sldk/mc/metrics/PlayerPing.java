@@ -1,10 +1,10 @@
 package de.sldk.mc.metrics;
 
 import io.prometheus.client.Gauge;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-public class PlayerPing extends PlayerMetric {
+public class PlayerPing extends OnlinePlayerMetric {
     private static final Gauge PLAYER_PING = Gauge.build()
         .name(prefix("player_ping"))
         .help("Online player ping")
@@ -16,8 +16,7 @@ public class PlayerPing extends PlayerMetric {
     }
 
     @Override
-    protected void collect(OfflinePlayer player) {
-        if(!player.isOnline() || player.getPlayer() == null) return;
-        PLAYER_PING.labels(getNameOrUid(player), getUid(player)).set(player.getPlayer().getPing());
+    protected void collect(Player player) {
+        PLAYER_PING.labels(getName(player), getUid(player)).set(player.getPing());
     }
 }

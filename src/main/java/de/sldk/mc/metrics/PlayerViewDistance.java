@@ -1,10 +1,10 @@
 package de.sldk.mc.metrics;
 
 import io.prometheus.client.Gauge;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
-public class PlayerViewDistance extends PlayerMetric {
+public class PlayerViewDistance extends OnlinePlayerMetric {
     private static final Gauge PLAYER_VIEW_DISTANCE = Gauge.build()
         .name(prefix("player_view_distance"))
         .help("Online player view distance")
@@ -16,8 +16,7 @@ public class PlayerViewDistance extends PlayerMetric {
     }
 
     @Override
-    protected void collect(OfflinePlayer player) {
-        if(!player.isOnline() || player.getPlayer() == null) return;
-        PLAYER_VIEW_DISTANCE.labels(getNameOrUid(player), getUid(player)).set(player.getPlayer().getClientViewDistance());
+    protected void collect(Player player) {
+        PLAYER_VIEW_DISTANCE.labels(getName(player), getUid(player)).set(player.getClientViewDistance());
     }
 }

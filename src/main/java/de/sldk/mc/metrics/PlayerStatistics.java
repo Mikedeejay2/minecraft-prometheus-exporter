@@ -19,7 +19,7 @@ import org.bukkit.plugin.Plugin;
  * <p>
  * Online player -> fetch data from Minecraft API
  */
-public class PlayerStatistics extends PlayerMetric {
+public class PlayerStatistics extends OfflinePlayerMetric {
 
     private static final Gauge PLAYER_STATS = Gauge.build()
             .name(prefix("player_statistic"))
